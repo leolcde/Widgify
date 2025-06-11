@@ -1,11 +1,11 @@
-const express = require('express');
-require('dotenv').config();
+import express from 'express';
+import dotenv from 'dotenv';
+import db from './config/db.js';
+import authRoutes from './routes/auth/auth.js';
 
+dotenv.config();
 const app = express();
-const db = require('./config/db');
-const authRoutes = require('./routes/auth/auth');
-
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
