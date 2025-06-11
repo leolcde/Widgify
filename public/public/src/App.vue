@@ -5,12 +5,12 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
 
   <div class="left_of_screen"> 
-  <h1 class="title">Widgify</h1>
+    <h1 class="title">Widgify</h1>
   </div>
 
   <div class="right_of_screen">
-  <button>Login</button>
-  <button>Register</button>
+    <button>Login</button>
+    <button>Register</button>
   </div>
 
 </template>
@@ -29,7 +29,8 @@ body
 
 .right_of_screen
 {
-
+  display: flex;
+  margin-right: 80%;
 }
 
 .left_of_screen
