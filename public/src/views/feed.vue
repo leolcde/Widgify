@@ -3,9 +3,7 @@
 </script>
 
 <template>
-    <h1>Home</h1>
-    <button>Login</button>
-    <button>Register</button>
+    <h1>Feed</h1>
 </template>
 
 <style scoped>
