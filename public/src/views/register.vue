@@ -1,5 +1,5 @@
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { register } from '../utils/register.ts'
 
@@ -10,6 +10,8 @@ const password = ref('')
 const showPassword = ref(false)
 const error = ref('')
 const router = useRouter()
+
+computed(() => email.value.includes('@'));
 
 function togglePasswordVisibility()
 {
@@ -32,7 +34,7 @@ const handleRegister = async () => {
 <template>
   <div class="register-container">
     <h1 class="title">Register</h1>
-
+    
     <form @submit.prevent="handleRegister" class="form-textfield">
       <input class="input" v-model="email" type="email" placeholder="Email" required />
       <input class="input" v-model="username" placeholder="Username" required />
@@ -40,7 +42,7 @@ const handleRegister = async () => {
       <input class="input" :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Password" required />
       <img class="toggle-password" :src="showPassword ? '../../content/eye_close.png' : '../../content/eye_open.png'" @click="togglePasswordVisibility" />
       <button type="submit" class="sub-button">Register</button>
-
+      
       <p v-if="error" class="error-message">{{ error }}</p>
     </form>
   </div>
