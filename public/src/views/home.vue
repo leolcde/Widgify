@@ -36,7 +36,6 @@ h1
 
 .button_auth:active {
   background-color: rgb(22, 160, 214);
-  /*50, 168, 80*/
   box-shadow: rgb(46, 126, 201) 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 200ms;
