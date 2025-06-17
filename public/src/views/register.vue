@@ -49,18 +49,21 @@ const handleRegister = async () => {
 </template>
 
 <style scoped>
-.register-container {
+.register-container
+{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.title {
+.title
+{
   color: white;
   margin-bottom: 1.5rem;
 }
 
-.form-textfield {
+.form-textfield
+{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,7 +72,8 @@ const handleRegister = async () => {
   max-width: 400px;
 }
 
-.input {
+.input
+{
   width: 100%;
   border: 2px solid transparent;
   height: 2.5em;
@@ -81,13 +85,15 @@ const handleRegister = async () => {
 }
 
 .input:hover,
-.input:focus {
+.input:focus
+{
   border: 2px solid #4A9DEC;
   box-shadow: 0 0 0 7px rgba(74, 157, 236, 0.2);
   background-color: white;
 }
 
-.toggle-password {
+.toggle-password
+{
   position: absolute;
   right: 54em;
   top: 62.3%;
@@ -96,7 +102,8 @@ const handleRegister = async () => {
   cursor: pointer;
 }
 
-.sub-button {
+.sub-button
+{
   width: 100%;
   padding: 17px;
   border-radius: 10px;
@@ -110,18 +117,21 @@ const handleRegister = async () => {
   transition: all 0.3s ease;
 }
 
-.sub-button:hover {
+.sub-button:hover
+{
   box-shadow: rgb(46, 152, 201) 0px 7px 0px 0px;
 }
 
-.sub-button:active {
+.sub-button:active
+{
   background-color: rgb(22, 160, 214);
   box-shadow: none;
   transform: translateY(5px);
   transition: 200ms;
 }
 
-.error-message {
+.error-message
+{
   color: red;
   font-weight: bold;
   margin-top: 1rem;

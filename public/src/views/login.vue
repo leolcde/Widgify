@@ -15,7 +15,7 @@ async function handleLogin()
   try {
     const data = await login(email.value, password.value)
     localStorage.setItem('token', data.token)
-    router.push('/todo')
+    router.push('/feed')
   } catch (err) {
     error.value = err.message
   }
@@ -29,8 +29,8 @@ async function handleLogin()
 
     <form @submit.prevent="handleLogin()">
       <div class="form-textfield">
-          <input v-model="username" placeholder="Username" required />
-          <input type="password" placeholder="Password" required />
+          <input class="input" v-model="username" placeholder="Username" required />
+          <input class="input" type="password" placeholder="Password" required />
           <button type="submit" class="sub-button">login</button>
       </div>
     </form>
@@ -50,7 +50,28 @@ async function handleLogin()
     gap: 1rem;
 }
 
-.sub-button {
+.input
+{
+  width: 100%;
+  border: 2px solid transparent;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  background-color: #F3F3F3;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.input:hover,
+.input:focus
+{
+  border: 2px solid #4A9DEC;
+  box-shadow: 0 0 0 7px rgba(74, 157, 236, 0.2);
+  background-color: white;
+}
+
+.sub-button
+{
   padding: 17px 40px;
   border-radius: 10px;
   border: none;
@@ -65,11 +86,13 @@ async function handleLogin()
   gap: 3rem;
 }
 
-.sub-button:hover {
+.sub-button:hover
+{
   box-shadow: rgb(46, 152, 201) 0px 7px 0px 0px;
 }
 
-.sub-button:active {
+.sub-button:active
+{
   background-color: rgb(22, 160, 214);
   box-shadow: rgb(46, 126, 201) 0px 0px 0px 0px;
   transform: translateY(5px);
