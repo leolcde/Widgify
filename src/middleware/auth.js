@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 const secret = process.env.SECRET;
 
 export const verifyToken = (req, res, next) => {

@@ -10,6 +10,7 @@ const router = Router();
 dotenv.config();
 
 router.post('/register', async (req, res, next) => {
+    console.log("in register")
     const { email, username, name, password } = req.body;
     const saltRounds = 10;
 
