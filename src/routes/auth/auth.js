@@ -51,10 +51,10 @@ router.post('/register', async (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     try {
-        const [rows] = await db.query("SELECT * FROM user WHERE email = ?", [email]);
+        const [rows] = await db.query("SELECT * FROM user WHERE username = ?", [username]);
 
         if (rows.length === 0) {
             return res.status(401).send({

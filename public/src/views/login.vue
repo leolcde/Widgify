@@ -1,53 +1,69 @@
-<script setup>
-
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { login } from '../utils/login';
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { login } from '../utils/login.ts'
 
 const username = ref('')
 const password = ref('')
+const showPassword = ref(false)
 const error = ref('')
 const router = useRouter()
 
-async function handleLogin()
+function togglePasswordVisibility()
 {
-  error.value = ''
-  try {
-    const data = await login(email.value, password.value)
-    localStorage.setItem('token', data.token)
-    router.push('/feed')
-  } catch (err) {
-    error.value = err.message
-  }
+  showPassword.value = !showPassword.value
 }
 
+const handleLogin = async () => {
+  error.value = ''
+  try {
+    await login(username.value, password.value)
+    sessionStorage.setItem('justLogged', 'true')
+    alert("You logged in ! 😁")
+    router.push('/feed')
+  } catch (err) {
+    error.value = err.message || 'Login failed.'
+  }
+}
 </script>
 
 <template>
-
+  <div class="login-container">
     <h1 class="title">Login</h1>
-
-    <form @submit.prevent="handleLogin()">
-      <div class="form-textfield">
-          <input class="input" v-model="username" placeholder="Username" required />
-          <input class="input" type="password" placeholder="Password" required />
-          <button type="submit" class="sub-button">login</button>
-      </div>
+    
+    <form @submit.prevent="handleLogin" class="form-textfield">
+      <input class="input" v-model="username" placeholder="Username" required />
+      <input class="input" :type="showPassword ? 'text' : 'password'" v-model="password" placeholder="Password" required />
+      <img class="toggle-password" :src="showPassword ? '../../content/eye_close.png' : '../../content/eye_open.png'" @click="togglePasswordVisibility" />
+      <button type="submit" class="sub-button">Login</button>
+      
+      <p v-if="error" class="error-message">{{ error }}</p>
     </form>
-
+  </div>
 </template>
 
 <style scoped>
+.login-container
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title
 {
-    color: white;
+  color: white;
+  margin-bottom: 1.5rem;
 }
 
 .form-textfield
 {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .input
@@ -70,20 +86,29 @@ async function handleLogin()
   background-color: white;
 }
 
+.toggle-password
+{
+  position: absolute;
+  right: 54em;
+  top: 56%;
+  transform: translateY(-50%);
+  height: 1.5em;
+  cursor: pointer;
+}
+
 .sub-button
 {
-  padding: 17px 40px;
+  width: 100%;
+  padding: 17px;
   border-radius: 10px;
   border: none;
-  outline: none;
   background-color: rgb(56, 136, 255);
-  letter-spacing: 1.5px;
   font-size: 15px;
-  transition: all 0.3s ease;
-  box-shadow: rgb(46, 95, 201) 0px 10px 0px 0px;
-  color: hsl(0, 0%, 100%);
+  letter-spacing: 1.5px;
+  color: white;
   cursor: pointer;
-  gap: 3rem;
+  box-shadow: rgb(46, 95, 201) 0px 10px 0px 0px;
+  transition: all 0.3s ease;
 }
 
 .sub-button:hover
@@ -94,8 +119,15 @@ async function handleLogin()
 .sub-button:active
 {
   background-color: rgb(22, 160, 214);
-  box-shadow: rgb(46, 126, 201) 0px 0px 0px 0px;
+  box-shadow: none;
   transform: translateY(5px);
   transition: 200ms;
+}
+
+.error-message
+{
+  color: red;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 </style>

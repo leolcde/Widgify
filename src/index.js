@@ -21,7 +21,7 @@ db.getConnection()
     .catch((err) => console.error('error DB', err));
 
 app.use(authRoutes);
-app.use(publicationRoutes)
+app.use(publicationRoutes);
 
 app.get('/', (req, res) => {
     res.status(200).send('<body style="display:flex;justify-content:center;align-items:center;height:100vh;margin:0"><h1>Serveur is running :)</h1></body>');
